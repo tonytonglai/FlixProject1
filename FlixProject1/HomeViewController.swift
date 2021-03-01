@@ -12,41 +12,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     @IBOutlet weak var tableView: UITableView!
     
-    var names: [String] = ["Pee Pee", "Poo Poo","Pee Pee", "Poo Poo","Pee Pee", "Poo Poo","Pee Pee", "Poo Poo","Pee Pee", "Poo Poo"]
-    
-    var dictionary: [[String : String]] = [
-        ["Pee Pee" : "Urine",
-         "Poo Poo" : "Feces"
-        ],
-        ["Pee Pee" : "Urine",
-         "Poo Poo" : "Feces"
-        ],
-        ["Pee Pee" : "Urine",
-         "Poo Poo" : "Feces"
-        ],
-        ["Pee Pee" : "Urine",
-         "Poo Poo" : "Feces"
-        ],
-        ["Pee Pee" : "Urine",
-         "Poo Poo" : "Feces"
-        ],
-        ["Pee Pee" : "Urine",
-         "Poo Poo" : "Feces"
-        ],
-        ["Pee Pee" : "Urine",
-         "Poo Poo" : "Feces"
-        ],
-        ["Pee Pee" : "Urine",
-         "Poo Poo" : "Feces"
-        ],
-        ["Pee Pee" : "Urine",
-         "Poo Poo" : "Feces"
-        ],
-        ["Pee Pee" : "Urine",
-         "Poo Poo" : "Feces"
-        ]
-    ]
-    
     var movies = [[String : Any]]()
     
     override func viewDidLoad() {
@@ -69,7 +34,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             self.tableView.reloadData()
             
-            print(dataDictionary)
+            //print(dataDictionary)
               // TODO: Get the array of movies
               // TODO: Store the movies in a property to use elsewhere
               // TODO: Reload your table view data
@@ -107,14 +72,26 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         return cell
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        // Find the selected movie...
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPath(for: cell)!
+        // Pass the movie details into the screen...
+        let movie = movies[indexPath.row]
+        // SENDER IS THE CELL YOU TAP ON
+        
+        let detailsViewController = segue.destination as! MovieDetailsViewController
+        detailsViewController.movie = movie
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
-    */
+
 
 }
